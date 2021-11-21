@@ -24,29 +24,27 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.purple,
       ),
-      home: JStoWayDataBinding(),
+      home: JStwoWayDataBinding(),
     );
   }
 }
 
-class JStoWayDataBinding extends StatefulWidget {
+class JStwoWayDataBinding extends StatefulWidget {
   @override
-  _JStoWayDataBindingState createState() => _JStoWayDataBindingState();
+  _JStwoWayDataBindingState createState() => _JStwoWayDataBindingState();
 }
 
-class _JStoWayDataBindingState extends State<JStoWayDataBinding> {
-  String _jsResult = '';
-  JSApi js;
+class _JStwoWayDataBindingState extends State<JStwoWayDataBinding> {
+  JSApi js = new JSApi();
 
-  void dartFunction() {
+  void receive_data_from_js_cb() {
     js.calljsFunction('alertMessage', ['This Function was called by JS']);
   }
 
   @override
   void initState() {
     // TODO: implement initState
-    js = new JSApi();
-    js.jscallDARTfunction("dartFunction", dartFunction);
+    js.jscallDARTfunction("dartFunction", receive_data_from_js_cb);
     super.initState();
   }
 
